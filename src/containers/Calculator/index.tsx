@@ -30,7 +30,7 @@ function Calculator() {
 
   return (
     <div className="calculator-container">
-      <div className="calculator-column">
+      <div className="calculator-column calculator-leftSide">
         <ProductList />
         <Autocomplete
           getSuggestions={getSuggestions}

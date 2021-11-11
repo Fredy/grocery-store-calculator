@@ -1,7 +1,7 @@
 .calculator-container {
   display: flex;
   height: 50vh;
-  width: 50vw;
+  width: 960px;
   background-color: #f8edeb;
   box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.2);
 }
@@ -11,10 +11,13 @@
   flex-direction: column;
 }
 
+.calculator-leftSide {}
+
 .calculator-rightSide {
   flex: 1;
   justify-content: center;
   align-items: center;
+  padding: 16px;
   background-color: #ffe7db;
 }
 
@@ -44,5 +47,21 @@ h2 {
 
 .calculator-savedAmount h2 {
   font-size: 20px;
+}
+
+@media (max-width: 1200px) {
+  .calculator-container {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .calculator-container {
+    flex-direction: column-reverse;
+  }
+  .calculator-leftSide {
+    flex: 11
+  }
 }
 
