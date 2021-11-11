@@ -3,30 +3,31 @@ import { MdDeleteOutline, MdOutlineAdd, MdOutlineRemove } from 'react-icons/md';
 
 import './styles.css';
 import { moneyFormatter } from 'common/utils';
-import { Product } from 'common/types';
-import { MOCK_DATA } from 'common/mock';
+import { ProductData } from 'common/types';
+import { KEYED_PRODUCT_DATA } from 'common/mock';
+import { useGroceryStoreContext } from '../../contexts/GroceryStoreContext';
 
 interface ProductItemProps {
-  product: Product;
+  product: ProductData;
+  quantity: number;
 }
 
-function ProductItem({ product }: ProductItemProps) {
-  const { cost, quantity, uniqueId, name } = product;
-  const formattedCost = moneyFormatter.format(quantity * cost);
+function ProductItem({ product, quantity }: ProductItemProps) {
+  const { increaseProductItem, decreaseProductItem, removeProductItem } =
+    useGroceryStoreContext();
+  const { price, uniqueId, name } = product;
+  const formattedPrice = moneyFormatter.format(quantity * price);
 
   const handleIncrease = () => {
-    //  TODO: do something with uniqueId
-    console.debug(`Increasing ${uniqueId} in 1`);
+    increaseProductItem(uniqueId);
   };
 
   const handleDecrease = () => {
-    //  TODO: do something with uniqueId
-    console.debug(`Decreasing ${uniqueId} in 1`);
+    decreaseProductItem(uniqueId);
   };
 
   const handleRemove = () => {
-    //  TODO: do something with uniqueId
-    console.debug(`Removing ${uniqueId} from list`);
+    removeProductItem(uniqueId);
   };
 
   return (
@@ -38,15 +39,15 @@ function ProductItem({ product }: ProductItemProps) {
       </div>
 
       <div className="productList-item-buttonGroup">
-        <button onClick={handleIncrease} className="productList-item-button">
+        <button onClick={handleDecrease} className="productList-item-button">
           <MdOutlineRemove size={20} />
         </button>
-        <button onClick={handleDecrease} className="productList-item-button">
+        <button onClick={handleIncrease} className="productList-item-button">
           <MdOutlineAdd size={20} />
         </button>
       </div>
 
-      <span className="productList-item-price">{formattedCost}</span>
+      <span className="productList-item-price">{formattedPrice}</span>
       <button onClick={handleRemove} className="productList-item-button">
         <MdDeleteOutline color="red" size={20} />
       </button>
@@ -55,10 +56,16 @@ function ProductItem({ product }: ProductItemProps) {
 }
 
 function ProductList() {
+  const { productsMap } = useGroceryStoreContext();
+
   return (
     <ul className="productList-container">
-      {MOCK_DATA.map((v) => (
-        <ProductItem product={v} key={v.uniqueId} />
+      {Array.from(productsMap).map(([key, quantity]) => (
+        <ProductItem
+          product={KEYED_PRODUCT_DATA[key]}
+          quantity={quantity}
+          key={key}
+        />
       ))}
     </ul>
   );

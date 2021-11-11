@@ -1,28 +1,25 @@
 import React, { useState } from 'react';
 import Autosuggest, {
   ChangeEvent,
+  SuggestionSelectedEventData,
   SuggestionsFetchRequestedParams,
 } from 'react-autosuggest';
 
 import './styles.css';
-import { MOCK_DATA } from 'common/mock';
-import { Product } from 'common/types';
+import { ProductData } from 'common/types';
 
-function getSuggestions(value: string) {
-  const inputValue = value.trim().toLowerCase();
-
-  return inputValue
-    ? MOCK_DATA.filter((prod) => prod.name.toLowerCase().includes(inputValue))
-    : [];
+interface AutocompleteProps {
+  onSelectValue: (prod: ProductData) => void;
+  getSuggestions: (value: string) => ProductData[];
 }
 
-function renderSuggestion(prod: Product) {
+function renderSuggestion(prod: ProductData) {
   return <div>{prod.name}</div>;
 }
 
-function Autocomplete() {
+function Autocomplete({ onSelectValue, getSuggestions }: AutocompleteProps) {
   const [value, setValue] = useState('');
-  const [suggestions, setSuggestions] = useState<Product[]>([]);
+  const [suggestions, setSuggestions] = useState<ProductData[]>([]);
 
   const onSuggestionsFetchRequested = ({
     value,
@@ -30,8 +27,16 @@ function Autocomplete() {
     setSuggestions(getSuggestions(value));
   };
 
-  const onChange = (event: any, { newValue }: ChangeEvent) => {
+  const onChange = (_: any, { newValue }: ChangeEvent) => {
     setValue(newValue);
+  };
+
+  const handleSuggestionSelected = (
+    _: any,
+    { suggestion }: SuggestionSelectedEventData<ProductData>
+  ) => {
+    onSelectValue(suggestion);
+    setValue('');
   };
 
   const inputProps = {
@@ -45,7 +50,8 @@ function Autocomplete() {
       suggestions={suggestions}
       onSuggestionsFetchRequested={onSuggestionsFetchRequested}
       onSuggestionsClearRequested={() => setSuggestions([])}
-      getSuggestionValue={(prod: Product) => prod.name}
+      onSuggestionSelected={handleSuggestionSelected}
+      getSuggestionValue={(prod: ProductData) => prod.name}
       renderSuggestion={renderSuggestion}
       inputProps={inputProps}
     />
