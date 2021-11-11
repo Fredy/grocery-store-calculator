@@ -1,6 +1,14 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 import { ProductItemsMap, ProductUniqueKey } from 'common/types';
+import { KEYED_PRODUCT_DATA } from 'common/mock';
+import { calculateItemPrice } from 'common/utils';
 
 interface Props {
   children: React.ReactNode;
@@ -8,6 +16,8 @@ interface Props {
 
 interface ContextValue {
   productsMap: ProductItemsMap;
+  totalPrice: number;
+  savings: number;
   increaseProductItem: (key: ProductUniqueKey) => void;
   decreaseProductItem: (key: ProductUniqueKey) => void;
   removeProductItem: (key: ProductUniqueKey) => void;
@@ -17,6 +27,20 @@ const GroceryStoreContext = createContext<ContextValue>(undefined as any);
 
 export function GroceryStoreProvider({ children }: Props) {
   const [productsMap, setProductsMap] = useState<ProductItemsMap>(new Map());
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [savings, setSavings] = useState(0);
+
+  useEffect(() => {
+    let newPrice = 0;
+    let withoutDiscountPrice = 0;
+    productsMap.forEach((quantity, key) => {
+      const { price: singlePrice } = KEYED_PRODUCT_DATA[key];
+      withoutDiscountPrice += quantity * singlePrice;
+      newPrice += calculateItemPrice(key, quantity);
+    });
+    setTotalPrice(newPrice);
+    setSavings(withoutDiscountPrice - newPrice);
+  }, [productsMap]);
 
   const increaseProductItem = useCallback((key: ProductUniqueKey) => {
     setProductsMap((old) => {
@@ -58,8 +82,10 @@ export function GroceryStoreProvider({ children }: Props) {
     });
   }, []);
 
-  const contextValue = {
+  const contextValue: ContextValue = {
     productsMap,
+    totalPrice,
+    savings,
     increaseProductItem,
     decreaseProductItem,
     removeProductItem,

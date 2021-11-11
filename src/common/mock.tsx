@@ -5,13 +5,13 @@ export const PRODUCT_DATA: ProductData[] = [
     name: 'Milk',
     price: 3.97,
     uniqueId: 'milk',
-    salePrice: { quantity: 2, newPrice: 5.0 },
+    salePrice: { quantity: 2, newPrice: 5 },
   },
   {
     name: 'Bread',
     price: 2.17,
     uniqueId: 'bread',
-    salePrice: { quantity: 3, newPrice: 3 },
+    salePrice: { quantity: 3, newPrice: 6 },
   },
   {
     name: 'Banana',

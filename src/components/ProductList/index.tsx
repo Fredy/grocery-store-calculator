@@ -2,10 +2,10 @@ import React from 'react';
 import { MdDeleteOutline, MdOutlineAdd, MdOutlineRemove } from 'react-icons/md';
 
 import './styles.css';
-import { moneyFormatter } from 'common/utils';
+import { calculateItemPrice, moneyFormatter } from 'common/utils';
 import { ProductData } from 'common/types';
 import { KEYED_PRODUCT_DATA } from 'common/mock';
-import { useGroceryStoreContext } from '../../contexts/GroceryStoreContext';
+import { useGroceryStoreContext } from 'contexts/GroceryStoreContext';
 
 interface ProductItemProps {
   product: ProductData;
@@ -15,8 +15,10 @@ interface ProductItemProps {
 function ProductItem({ product, quantity }: ProductItemProps) {
   const { increaseProductItem, decreaseProductItem, removeProductItem } =
     useGroceryStoreContext();
-  const { price, uniqueId, name } = product;
-  const formattedPrice = moneyFormatter.format(quantity * price);
+  const { uniqueId, name } = product;
+  const formattedPrice = moneyFormatter.format(
+    calculateItemPrice(uniqueId, quantity)
+  );
 
   const handleIncrease = () => {
     increaseProductItem(uniqueId);
