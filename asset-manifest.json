@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/grocery-store-calculator/static/css/main.a650b2a3.chunk.css",
+    "main.js": "/grocery-store-calculator/static/js/main.4527f566.chunk.js",
+    "main.js.map": "/grocery-store-calculator/static/js/main.4527f566.chunk.js.map",
+    "runtime-main.js": "/grocery-store-calculator/static/js/runtime-main.a1224dfb.js",
+    "runtime-main.js.map": "/grocery-store-calculator/static/js/runtime-main.a1224dfb.js.map",
+    "static/js/2.2b9afbd6.chunk.js": "/grocery-store-calculator/static/js/2.2b9afbd6.chunk.js",
+    "static/js/2.2b9afbd6.chunk.js.map": "/grocery-store-calculator/static/js/2.2b9afbd6.chunk.js.map",
+    "static/js/3.8f1929eb.chunk.js": "/grocery-store-calculator/static/js/3.8f1929eb.chunk.js",
+    "static/js/3.8f1929eb.chunk.js.map": "/grocery-store-calculator/static/js/3.8f1929eb.chunk.js.map",
+    "index.html": "/grocery-store-calculator/index.html",
+    "static/css/main.a650b2a3.chunk.css.map": "/grocery-store-calculator/static/css/main.a650b2a3.chunk.css.map",
+    "static/js/2.2b9afbd6.chunk.js.LICENSE.txt": "/grocery-store-calculator/static/js/2.2b9afbd6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a1224dfb.js",
+    "static/js/2.2b9afbd6.chunk.js",
+    "static/css/main.a650b2a3.chunk.css",
+    "static/js/main.4527f566.chunk.js"
+  ]
+}
