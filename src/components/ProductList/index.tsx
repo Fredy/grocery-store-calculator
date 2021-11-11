@@ -2,21 +2,9 @@ import React from 'react';
 import { MdDeleteOutline, MdOutlineAdd, MdOutlineRemove } from 'react-icons/md';
 
 import './styles.css';
-import { moneyFormatter } from '../../common/utils';
-
-interface Product {
-  name: string;
-  quantity: number;
-  cost: number;
-  uniqueId: string;
-}
-
-const MOCK_DATA: Product[] = [
-  { name: 'Milk', quantity: 3, cost: 3.97, uniqueId: 'milk' },
-  { name: 'Bread', quantity: 3, cost: 2.17, uniqueId: 'bread' },
-  { name: 'Banana', quantity: 3, cost: 0.99, uniqueId: 'banana' },
-  { name: 'Apple', quantity: 3, cost: 0.89, uniqueId: 'apple' },
-];
+import { moneyFormatter } from 'common/utils';
+import { Product } from 'common/types';
+import { MOCK_DATA } from 'common/mock';
 
 interface ProductItemProps {
   product: Product;

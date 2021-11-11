@@ -1,14 +1,15 @@
 import React from 'react';
 
 import './styles.css';
-import ProductList from '../../components/ProductList';
+import ProductList from 'components/ProductList';
+import Autocomplete from 'components/Autocomplete';
 
 function Calculator() {
   return (
     <div className="calculator-container">
       <div className="calculator-column">
         <ProductList />
-        <input type="text" />
+        <Autocomplete />
       </div>
       <div className="calculator-column calculator-rightSide">
         <div className="">
