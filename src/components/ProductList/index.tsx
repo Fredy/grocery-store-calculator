@@ -44,18 +44,21 @@ function ProductItem({ product }: ProductItemProps) {
   return (
     <li className="productList-item">
       <div className="productList-item-description">
-        <span>{name}</span>
+        <span className="productList-item-name">{name}</span>
 
         <span className="productList-item-quantity">x{quantity}</span>
       </div>
-      <span className="productList-item-price">{formattedCost}</span>
 
-      <button onClick={handleIncrease} className="productList-item-button">
-        <MdOutlineRemove size={20} />
-      </button>
-      <button onClick={handleDecrease} className="productList-item-button">
-        <MdOutlineAdd size={20} />
-      </button>
+      <div className="productList-item-buttonGroup">
+        <button onClick={handleIncrease} className="productList-item-button">
+          <MdOutlineRemove size={20} />
+        </button>
+        <button onClick={handleDecrease} className="productList-item-button">
+          <MdOutlineAdd size={20} />
+        </button>
+      </div>
+
+      <span className="productList-item-price">{formattedCost}</span>
       <button onClick={handleRemove} className="productList-item-button">
         <MdDeleteOutline color="red" size={20} />
       </button>

@@ -1,7 +1,7 @@
 .productList-container {
   overflow-y: auto;
   list-style-type: none;
-  padding: 0 32px;
+  padding: 8px 32px;
   margin: 0;
   /*TODO: responsive*/
   width: 240px;
@@ -9,28 +9,40 @@
 }
 
 .productList-item {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   display: flex;
   align-items: center;
 }
 
 .productList-item-description {
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.productList-item-quantity {
-  font-size: 14px;
-  flex-grow: 1;
+.productList-item-name {
   text-align: right;
   font-weight: 500;
 }
 
-.productList-item-price {
-  flex-grow: 1;
+.productList-item-quantity {
+  font-size: 14px;
+  flex: 2;
   text-align: right;
-  font-weight: bold;
+}
+
+.productList-item-buttonGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  margin-left: 8px;
+}
+
+.productList-item-price {
+  flex: 1;
+  text-align: right;
+  font-weight: 700;
   margin-left: 8px;
   margin-right: 8px;
 }
