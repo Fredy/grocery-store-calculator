@@ -12,11 +12,11 @@ function Calculator() {
         <Autocomplete />
       </div>
       <div className="calculator-column calculator-rightSide">
-        <div className="">
+        <div className="calculator-totalPrice">
           <h1>Total price</h1>
           <h2>$12.32</h2>
         </div>
-        <div className="">
+        <div className="calculator-savedAmount">
           <h1>You saved</h1>
           <h2>$2.32</h2>
         </div>

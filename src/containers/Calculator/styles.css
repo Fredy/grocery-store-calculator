@@ -3,7 +3,7 @@
   height: 50vh;
   width: 50vw;
   background-color: #f8edeb;
-  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.2)
+  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.2);
 }
 
 .calculator-column {
@@ -21,4 +21,28 @@
 .calculator-rightSide h1,
 h2 {
   text-align: center;
+  margin: 0;
 }
+
+.calculator-rightSide h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.calculator-rightSide h2 {
+  font-size: 26px;
+  color: #3c4043
+}
+
+.calculator-totalPrice {
+  margin-bottom: 40px;
+}
+
+.calculator-savedAmount h1 {
+  font-size: 26px;
+}
+
+.calculator-savedAmount h2 {
+  font-size: 20px;
+}
+
